@@ -1,0 +1,15 @@
+.gridcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    gap: 30px;
+    padding: 10px;
+  }
+  
+  .griditem {
+    border: 1px solid #110f0f;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width:5%
+  }

@@ -1,0 +1,7 @@
+.LeftImagePosistioning
+{
+    position: absolute;
+    right: 10px;
+    z-index: 10;
+    top:100px;
+}

@@ -1,0 +1,48 @@
+/* src/GridComponent.css */
+.gridcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    gap: 40px;
+    padding: 10px;
+  }
+  
+  .griditem {
+    border: 1px solid #110f0f;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width:5%
+  }
+  .wrapper
+  {
+    background-color: var(--color-black);
+    position: relative;
+    height: 80%;
+    width:100vw;
+
+  }
+  .title
+  {
+    width: 122px;
+    height: 30px;
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .header
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .corousalButton
+  {
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 20px;
+   font-weight: 600;
+  text-align: right;
+  color: var(--color-primary);
+  background-color: var(--color-black);
+  }

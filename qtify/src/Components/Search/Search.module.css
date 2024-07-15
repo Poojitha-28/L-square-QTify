@@ -1,0 +1,28 @@
+.search
+{
+    width: 500px;
+    border:  1px solid var(--color-black);
+    height: 92%;
+    border-radius: 8px 0px 0px 8px;
+    font:poppins;
+    font-weight: 400px;
+    size: 16px;
+
+}
+.wrapper
+{
+    display: flex;
+    height: 48px;
+    border-radius: 8px 8px 8px 8px;
+    border: 1px solid var(--color-black);
+
+}
+.searchButton
+{
+    border-radius: 0px 8px 8px 0px;
+    border-left: none;
+    cursor: pointer;
+    border: 1px solid var(--color-black);
+    height: 100%;
+
+}
