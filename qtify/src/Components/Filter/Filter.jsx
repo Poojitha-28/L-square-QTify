@@ -4,18 +4,31 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { useEffect } from 'react';
+import Carousal from '../Carousal/Carousal';
+import Card from '../Card/Card';
+import { CircularProgress } from '@mui/material';
+import styles from './Filter.module.css';
 
-export default function Filter() {
+export default function Filter({songsData,type,filters}) {
+
  // Add this line
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState("ALL");
+  const [genreData,setgenreData]= useState([...songsData]);
 
   const handleChange = (event, newValue) => {
     debugger;
-    console.log('handleChange called with newValue:', newValue); // Add this line
     setValue(newValue);
+    if(newValue=="ALL")
+    {
+      setgenreData(songsData);
+
+    }
+    else
+    {
+    setgenreData(songsData.filter(x=>x.genre.key==newValue));
+    }
   };
- 
+
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}  >
@@ -23,44 +36,27 @@ export default function Filter() {
           <TabList 
           onChange={handleChange}
           aria-label="Genre Tabs" >
-            <Tab label="ALL" value="1" 
-            sx={{
-            color:'white',
-           '&.Mui-selected':{
-            color:'green'
+            {
+              filters.map((ele,idx)=>(
+                <Tab key={idx} label={ele.label} value={ele.key} 
+                sx={{
+                  color:'white',
+                 '&.Mui-selected':{
+                  color:'green'
+                  }
+                  }}/>
+              ))
             }
-            }}/>
-             <Tab label="Rock" value="2" 
-            sx={{
-            color:'white',
-           '&.Mui-selected':{
-            color:'green'
-            }
-            }}/>
-            <Tab label="Pop" value="3"  sx={{
-            color:'white',
-           '&.Mui-selected':{
-            color:'green'
-            }
-            }}/>
-            <Tab label="Jazz" value="4"  sx={{
-            color:'white',
-           '&.Mui-selected':{
-            color:'green'
-            }
-            }}/>
-            <Tab label="Blues" value="5"  sx={{
-            color:'white',
-           '&.Mui-selected':{
-            color:'green'
-            }
-            }}/>
           </TabList>
         </Box>
-        <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-        <TabPanel value="4">Item Four</TabPanel>
+       { filters.map((ele,idx)=>(
+        <TabPanel key={idx} value={ele.key} label={ele.label}>
+        {genreData.length===0?<CircularProgress/>:
+        <Carousal data={genreData} type={type}/>
+      }
+      </TabPanel>
+       ))
+    }
       </TabContext>
     </Box>
   );

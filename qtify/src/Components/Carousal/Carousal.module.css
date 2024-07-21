@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     width:100%;
-    gap: 30px;
+    gap: 40px;
     padding: 10px;
   }
   
@@ -11,5 +11,6 @@
     text-align: center;
     box-sizing: border-box;
     border-radius: 10px;
-    width:5%
+    width:10%;
+    height: auto;
   }

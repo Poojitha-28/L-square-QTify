@@ -10,7 +10,7 @@ export default function HomePage()
         <Hero></Hero>
         <GridComponent data={albumData} title="Top Albums" type="Albums" />
         <GridComponent data={newAlbumData} title="New Albums" type="Albums" />
-        <GridComponent data={songsData} filteredSource={filteredSource}title="Songs" type="Songs" />
+        <GridComponent data={songsData} filteredSource={filteredSource} title="Songs" type="Songs" />
         </div>
 
     )

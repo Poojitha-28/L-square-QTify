@@ -15,29 +15,29 @@ export default function GridComponent({data,title,filteredSource,type})
   useEffect(()=>{
   if(filteredSource)
     {
-    filteredSource().then((res)=>{
-      const {data}=res;
-      setFilteredSource([...filters,...data]);
-    })
+      setFilteredSource([{key:"ALL",label:"ALL"},...filteredSource]);
     }
-  });
+  },[filteredSource]);
   const showFilter=filters.length>1;
    return(
     <div className={styles.wrapper}>
+     
       <div className={styles.header}>
-     <div className={styles.title}>
+      <div className={styles.title}>
       {title}
       </div>
+      {type=="Albums" &&
       <button  className={styles.corousalButton}  
       onClick={handleToggle}
       >
         {corausalToggle?"Show All":"Collapse All"}
-      </button>
+      </button>}
       </div>
-      {showFilter && (<Filter/>
+  
+      {showFilter? (<Filter songsData={data} type={type}  filters={filters}/>
       )
-      }
-    
+      :(
+      <>
       {data.length===0?<CircularProgress/>:
       <>
         {corausalToggle?<Carousal data={data} type={type}/>
@@ -45,7 +45,7 @@ export default function GridComponent({data,title,filteredSource,type})
             <div className={styles.gridcontainer}>
             {
               data.map((element,index) => (
-                <div key={index} className={styles.griditem}>
+                <div key={element.id} className={styles.griditem}>
                   <Card cardComponent={element} type={type}/>
                   </div>
               ))
@@ -53,9 +53,13 @@ export default function GridComponent({data,title,filteredSource,type})
           </div>
         }
         </>
-
+      }
+      </>
+      )
     }
-        </div>
+     </div>
       );
+
+
 
 }

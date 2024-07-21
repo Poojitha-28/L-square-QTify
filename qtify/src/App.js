@@ -10,15 +10,20 @@ function App() {
   const [albumData, setAlbumData] = useState([]);
   const [newAlbumData, setNewAlbumData] = useState([]);
   const [newSongsData, setNewSongsData] = useState([]);
+  const [genres, setGenres] = useState([]);
+
 
   useEffect(() => {
     (async () => {
       const topalbumData = await fetchalbumData();
       const newAlbData= await fetchnNewAlbumData();
       const newSongsData= await fetchnSongsData();
+      const {data}= await filteredSource();
+
       setAlbumData(topalbumData);
       setNewAlbumData(newAlbData);
       setNewSongsData(newSongsData);
+      setGenres(data);
     })();
   }, []);
 
@@ -43,7 +48,7 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <NavBar />
-      <Outlet context={{ "albumData": albumData,"newAlbumData":newAlbumData,"songsData":newSongsData,"filteredSource":filteredSource}} />
+      <Outlet context={{ "albumData": albumData,"newAlbumData":newAlbumData,"songsData":newSongsData,"filteredSource":genres}} />
     </StyledEngineProvider>
   );
 }
